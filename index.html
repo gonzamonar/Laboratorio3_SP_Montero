@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+    <title>Vehículos Lanús</title>
+</head>
+
+<body>
+    <nav><img src="logo.png" alt="Vehículos Lanús" title="Vehículos Lanús: ABM de Vehículos."></nav>
+    <div id="loading-screen" class="loader hidden">
+        <div class="spinner"></div>
+    </div>
+    <div id="table-container" class="container">
+        <div class="box table-box">
+            <header>Listado de Vehículos</header>
+            <div class="field select">
+                <label for="tipo">Filtrar por: </label>
+                <select name="tipo" id="cmbfilter">
+                    <option value="all">Todos</option>
+                    <option value="aereos">Aéreos</option>
+                    <option value="terrestres">Terrestres</option>
+                </select>
+            </div>
+            <div class="row chk-div">
+            <p>Mostrar Columnas:</p>
+                <div>
+                    <div class="option">
+                        <input type="checkbox" name="column1" id="chk0" checked="true">
+                        <label for="column1">ID</label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" name="column2" id="chk1" checked="true">
+                        <label for="column2">Modelo</label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" name="column3" id="chk2" checked="true">
+                        <label for="column3">Año Fab.</label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" name="column4" id="chk3" checked="true">
+                        <label for="column4">Vel. Max.</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="option">
+                        <input type="checkbox" name="column5" id="chk4" checked="true">
+                        <label for="column5">Alt. Max.</label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" name="column6" id="chk5" checked="true">
+                        <label for="column6">Autonomía</label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" name="column7" id="chk6" checked="true">
+                        <label for="column7">Cant. Puertas</label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" name="column8" id="chk7" checked="true">
+                        <label for="column8">Cant. Ruedas</label>
+                    </div>
+                </div>
+            </div>
+            <table id="main_table">
+                <colgroup>
+                    <col id="col0">
+                    <col id="col1">
+                    <col id="col2">
+                    <col id="col3">
+                    <col id="col4">
+                    <col id="col5">
+                    <col id="col6">
+                    <col id="col7">
+                    <col id="col8">
+                    <col id="col9">
+                </colgroup>
+                <tr id="table_header">
+                    <th id="th0">ID</th>
+                    <th id="th1">Modelo</th>
+                    <th id="th2">Año Fab.</th>
+                    <th id="th3">Vel. Max.</th>
+                    <th id="th4">Alt. Max.</th>
+                    <th id="th5">Autonomía</th>
+                    <th id="th6">Cant. Puertas</th>
+                    <th id="th7">Cant. Ruedas</th>
+                    <th id="th8">Modificar</th>
+                    <th id="th9">Eliminar</th>
+                </tr>
+            </table>
+            <div class="btn">
+                <button id="btn_add">Agregar Elemento</button>
+            </div>
+        </div>
+    </div>
+    <div id="form-container" class="container hidden">
+        <div class="box form-box">
+            <header id="form-header">ABM de Vehículos</header>
+            <form>
+                <div class="field input">
+                    <label for="id">Id: </label>
+                    <input type="number" name="id" id="field_id" value="" disabled="true" required>
+                    <p id="error_id" class="error unactive">error</p>
+                </div>
+                <div class="field input">
+                    <label for="modelo">Modelo: </label>
+                    <input type="text" name="modelo" id="field_modelo" required minlength="2" maxlength="50" pattern="[\-0-9A-Za-zñÑáéíóóÁÉÍÓÚüÜ ]{2,50}">
+                    <p id="error_modelo" class="error unactive">error</p>
+                </div>
+                <div class="field input">
+                    <label for="anoFab">Año Fabricación: </label>
+                    <input type="number" name="anoFab" id="field_anoFab" required min="1885">
+                    <p id="error_anoFab" class="error unactive">error</p>
+                </div>
+                <div class="field input">
+                    <label for="velMax">Velocidad Máxima: </label>
+                    <input type="number" name="velMax" id="field_velMax" required min="1">
+                    <p id="error_velMax" class="error unactive">error</p>
+                </div>
+                <div class="field select custom-select">
+                    <label for="tipo">Tipo: </label>
+                    <select name="tipo" id="field_tipo" required>
+                        <option value="tipo1">Aéreo</option>
+                        <option value="tipo2">Terrestre</option>
+                    </select>
+                    <p id="error_tipo" class="error unactive">error</p>
+                </div>
+                <div id="input_altMax" class="field input">
+                    <label for="altMax">Altura Máxima: </label>
+                    <input type="number" name="altMax" id="field_altMax" required min="1">
+                    <p id="error_altMax" class="error unactive">error</p>
+                </div>
+                <div id="input_autonomia" class="field input">
+                    <label for="autonomia">Autonomía: </label>
+                    <input type="number" name="autonomia" id="field_autonomia" required min="1">
+                    <p id="error_autonomia" class="error unactive">error</p>
+                </div>
+                <div id="input_cantPue" class="field input hidden">
+                    <label for="cantPue">Cantidad de Puertas: </label>
+                    <input type="number" name="cantPue" id="field_cantPue"  required min="0">
+                    <p id="error_cantPue" class="error unactive">error</p>
+                </div>
+                <div id="input_cantRue" class="field input hidden">
+                    <label for="cantRue">Cantidad de Ruedas: </label>
+                    <input type="number" name="cantRue" id="field_cantRue" required min="1">
+                    <p id="error_cantRue" class="error unactive">error</p>
+                </div>
+            </form>
+            <div class="field btn">
+                <button id="btn_accept" class="">Aceptar</button>
+                <button id="btn_delete" class="dangerzone">Eliminar</button>
+                <button id="btn_cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
